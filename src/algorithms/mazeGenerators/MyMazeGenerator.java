@@ -25,7 +25,7 @@ public class MyMazeGenerator extends AMazaGenerator{
             j--;
 
         end=new Position(i,j);
-
+/*
         for(int k=0;k<grid.length;k++){
             for(int s=0;s<grid[0].length;s++){
                 if(grid[k][s]==2)
@@ -36,13 +36,13 @@ public class MyMazeGenerator extends AMazaGenerator{
                         grid[k][s] =1;
                 }
             }
-        }
+        }*/
         Maze my=new Maze(grid,start,end);
         return my;
     }
 
     private void genRecursiveDivision(int[][] grid,Position lu, Position rd, Position start, Position end){
-        if((rd.getColumnIndex()-lu.getColumnIndex())<2 || (rd.getRowIndex()-lu.getRowIndex())<2){
+        if((rd.getColumnIndex()-lu.getColumnIndex())<1 || (rd.getRowIndex()-lu.getRowIndex())<1){
             return;
         }
 
@@ -85,14 +85,14 @@ public class MyMazeGenerator extends AMazaGenerator{
         }
         else{
             for(int i=lu.getRowIndex();i<rd.getRowIndex()+1;i++){
-                grid[wallInd][i]=1;
+                grid[i][wallInd]=1;
             }
         }
     }
 
     public void CravePath(int pathInd,int[][]grid,boolean isHorizontal,Position lu, Position rd){
-        int ans= (int)(Math.random()*2);
-        if(ans == 0) {
+        //int ans= (int)(Math.random()*2);
+       // if(ans == 0) {
             if (isHorizontal == true) {
                 for (int i = lu.getColumnIndex(); i < rd.getColumnIndex() + 1; i++) {
                     grid[pathInd][i] = 0;
@@ -102,6 +102,6 @@ public class MyMazeGenerator extends AMazaGenerator{
                     grid[i][pathInd] = 0;
                 }
             }
-        }
+        //}
     }
 }
