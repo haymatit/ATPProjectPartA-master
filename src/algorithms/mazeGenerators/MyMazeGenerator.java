@@ -23,13 +23,18 @@ public class MyMazeGenerator extends AMazaGenerator{
             i--;
         else
             j--;
+
         end=new Position(i,j);
+
         for(int k=0;k<grid.length;k++){
             for(int s=0;s<grid[0].length;s++){
                 if(grid[k][s]==2)
                     grid[k][s]=0;
-                else if(grid[k][s]==0)
-                    grid[k][s]=(int) (Math.random()*2);
+                else if(grid[k][s]==0) {
+                    double wall=Math.random();
+                    if(wall>0.8)
+                        grid[k][s] =1;
+                }
             }
         }
         Maze my=new Maze(grid,start,end);
@@ -86,14 +91,16 @@ public class MyMazeGenerator extends AMazaGenerator{
     }
 
     public void CravePath(int pathInd,int[][]grid,boolean isHorizontal,Position lu, Position rd){
-        if(isHorizontal==true){
-            for(int i=lu.getColumnIndex();i<rd.getColumnIndex()+1;i++){
-                grid[pathInd][i]=0;
-            }
-        }
-        else{
-            for(int i=lu.getRowIndex();i<rd.getRowIndex()+1;i++){
-                grid[i][pathInd]=0;
+        int ans= (int)(Math.random()*2);
+        if(ans == 0) {
+            if (isHorizontal == true) {
+                for (int i = lu.getColumnIndex(); i < rd.getColumnIndex() + 1; i++) {
+                    grid[pathInd][i] = 0;
+                }
+            } else {
+                for (int i = lu.getRowIndex(); i < rd.getRowIndex() + 1; i++) {
+                    grid[i][pathInd] = 0;
+                }
             }
         }
     }
